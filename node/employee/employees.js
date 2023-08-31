@@ -11,6 +11,7 @@ axios.get(url).then(response => {
     const employees = response.data
     console.log(employees)
 
+    // search for the chinese woman with lowest salary
     const employee = employees
         .filter(chineses)
         .filter(women)
