@@ -1,6 +1,7 @@
 <h1>Form</h1>
 
-<form action="http://localhost:3003/users" method="POST">
+<form method="POST">
+    <input type="hidden" name="id" value="3">
     <input type="text" name="name">
     <input type="password" name="password">
     <textarea name="Biography" cols="30" rows="10"></textarea>
@@ -26,7 +27,8 @@
         <option value="go">Go</option>
         <option value="c">C</option>
     </select>
-    <button>Add</button>
+    <button formaction="http://localhost:3003/users">Add</button>
+    <button formaction="http://localhost:3003/users/3">Update</button>
 </form>
 
 <style>
