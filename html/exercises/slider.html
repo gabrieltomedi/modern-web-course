@@ -1,0 +1,110 @@
+<div wm-slider>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" 
+            alt="City Wall" width="513" height="342"
+            title="City Wall by Tarso Bessa">
+    </p>
+
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" 
+            alt="Intro Cod3r" height="342">
+    </p>
+
+    <p class="circle">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" 
+            alt="Rio de Janeiro" height="342">
+    </p>
+
+    <p class="text">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" 
+            alt="Avatar" height="50" align="left">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Urna id volutpat lacus laoreet non curabitur gravida.
+        Faucibus in ornare quam viverra orci sagittis. Congue eu
+        consequat ac felis donec et odio pellentesque.
+    </p>
+
+    <p class="city"></p>
+
+    <p>
+        <picture>
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png" 
+                media="(min-width: 600px)">
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo">
+        </picture>
+    </p>
+</div>
+
+<style>
+    p {
+        position: absolute;
+        display: none;
+    }
+
+    .circle {
+        width: 513px;
+        background-color: #444;
+    }
+
+    .text {
+        width: 400px;
+    }
+
+    .text img {
+        margin-right: 12px;
+    }
+
+    .city {
+        width: 513px;
+        height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+</style>
+
+<script>
+    function move(element, start, finish, steps, callback) {
+        const newStart = start - steps;
+        if (newStart >= finish) {
+            element.style.left = newStart + 'px'
+            setTimeout(() => move(element, newStart, finish, steps, callback), 7);
+        } else {
+            callback()
+        }
+    }
+
+    // const p = document.querySelector('[wm-slider] > p')
+    //     p.style.display = 'block'
+    //     move(p, 1500, -520, 5, () => {
+    //          console.log('Finished') 
+    //     })
+
+    function slider() {
+        const elements = document.querySelectorAll('[wm-slider] > p')
+        const slides = Array.from(elements) 
+        showSlide(slides, slides[0])
+    }
+
+    function showSlide(slides, slide) {
+        slide.style.display = 'block'
+        const start = innerWidth
+        const finish = -slide.clientWidth
+
+        slide.style.left = `${start}px`
+
+        move(slide, start, finish, 5, () => {
+            slide.style.display = 'none',
+            showSlide(slides, getNext(slides, slide))
+        })
+    }
+
+    function getNext(list, current){
+        const i = list.indexOf(current) + 1
+        return i < list.length ? list[i] : list[0]
+    }
+
+    slider()
+</script>
