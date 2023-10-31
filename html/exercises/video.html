@@ -4,12 +4,12 @@
 </video>
 
 <div wm-progess="myVideo" class="progress">
-        <div></div>
+    <div></div>
 </div>
 
 <div>
-    <button wn-play="myVideo">Play</button>
-    <button wn-pause="myVideo">Pause</button>
+    <button wm-play="myVideo">Play</button>
+    <button wm-pause="myVideo">Pause</button>
 </div>
 
 <style>
@@ -20,7 +20,7 @@
         margin: 20px;
     }
 
-    .progress > div {
+    .progress>div {
         background-color: red;
         color: #fff;
         height: 100%;
@@ -29,3 +29,22 @@
         width: 0;
     }
 </style>
+
+<script>  
+    function configVideo(id) {
+        const video = document.getElementById(id)
+        video.oncontextmenu = () => false
+
+        document.querySelector(`[wm-play=${id}]`).onclick = e => video.play()
+        document.querySelector(`[wm-pause=${id}]`).onclick = e => video.pause()
+
+        setInterval(() => {
+            const percent = (video.currentTime / video.duration) * 100
+            const valueDiv = document.querySelector(`[wm-progess=${id}] > div`)
+            valueDiv.style.width = `${percent}%`
+            valueDiv.innerHTML = `${percent.toFixed(1)}%`
+        }, 500)
+    }
+
+    configVideo("myVideo");
+</script>
