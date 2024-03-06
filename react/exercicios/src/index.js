@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Greetings from './components/Greetings'
+import Father from './components/Father'
 
 //import { GoodMorning, GoodNight } from './components/multipleComponents'
 // import Multi from './components/multipleComponents'
 
 ReactDOM.render(
     <div>
-        <Greetings type="Good Morning" name="Bia" />
+        <Father name="Gabriel" surname="Oliveira" />
     </div>
 , document.getElementById('root'))
