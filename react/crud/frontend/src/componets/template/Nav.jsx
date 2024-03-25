@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default props => 
     <aside className="menu-area">
         <nav className="menu">
-            {/* refatorar para os links do menu serem um componente nav-iten*/}
+            {/* refatorar para os links do menu serem um componente nav-item*/}
             <Link to="/">
                 <i className="fa fa-home"></i> Início
             </Link>
