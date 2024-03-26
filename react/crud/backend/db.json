@@ -1,11 +1,19 @@
 {
-    "users": [{
-        "id": 1,
-        "name": "Gabriel Oliveira",
-        "email": "gabrieloliveira@gmail.com"
-    }, {
-        "id": 2,
-        "name": "Matheus Santos",
-        "email": "matheussantos@gmail.com" 
-    }]
+  "users": [
+    {
+      "id": 1,
+      "name": "Gabriel Oliveira",
+      "email": "gabrieloliveira@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Matheus Santos",
+      "email": "matheussantos@gmail.com"
+    },
+    {
+      "name": "saddasd",
+      "email": "dasddas@gmaikl.com",
+      "id": 3
+    }
+  ]
 }
