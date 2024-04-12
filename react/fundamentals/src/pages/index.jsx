@@ -13,6 +13,7 @@ export default function Home() {
             <Navbar path="/stylish" title="Stylish"/>
             <Navbar path="/exemple" title="Exemple" color="#9400d3"/>
             <Navbar path="/navigation" title="Navigation #1" color="red"/>
+            <Navbar path="/state" title="Component with state" color="brown"/>
         </div>
     )
 }

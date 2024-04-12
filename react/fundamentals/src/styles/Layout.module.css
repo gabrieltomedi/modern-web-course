@@ -4,6 +4,15 @@
     flex-direction: column;
 }
 
+.layout button {
+    padding: 15px 10px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #8f0101;
+    margin-top: 20px ;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
