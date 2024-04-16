@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Navbar from '../components/NavItem'
+import NavItem from '../components/NavItem'
 
 export default function Home() {
     return (
@@ -10,10 +10,11 @@ export default function Home() {
             flexWrap: 'wrap',
             height: '100vh',
         }}> 
-            <Navbar path="/stylish" title="Stylish"/>
-            <Navbar path="/exemple" title="Exemple" color="#9400d3"/>
-            <Navbar path="/navigation" title="Navigation #1" color="red"/>
-            <Navbar path="/state" title="Component with state" color="brown"/>
+            <NavItem path="/stylish" title="Stylish"/>
+            <NavItem path="/exemple" title="Exemple" color="#9400d3"/>
+            <NavItem path="/navigation" title="Navigation #1" color="red"/>
+            <NavItem path="/clients/sp-2/123" title="Navigation #2" color="red"/>
+            <NavItem path="/state" title="Component with state" color="brown"/>
         </div>
     )
 }
