@@ -15,6 +15,7 @@ export default function Home() {
             <NavItem path="/navigation" title="Navigation #1" color="red"/>
             <NavItem path="/clients/sp-2/123" title="Navigation #2" color="red"/>
             <NavItem path="/state" title="Component with state" color="brown"/>
+            <NavItem path="/integration" title="API integraion" color="green"/>
         </div>
     )
 }
