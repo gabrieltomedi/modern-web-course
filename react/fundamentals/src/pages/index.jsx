@@ -17,6 +17,7 @@ export default function Home() {
             <NavItem path="/state" title="Component with state" color="brown"/>
             <NavItem path="/integration" title="API integraion" color="green"/>
             <NavItem path="/static" title="Static Content" color="#B6BBC4"/>
+            <NavItem path="/serverRendering" title="Server-side Rendering" color="#B6BBC4"/>
         </div>
     )
 }
