@@ -1,10 +1,15 @@
-import Clients from "../core/Client"
+import Client from "../core/Client"
+import { DeleteIcon, EditIcon } from "./Icons"
 
 interface TableProps {
-    clients: Clients[]
+    clients: Client[]
+    clientSelected?: (client: Client) => void
+    clientDelete?: (client: Client) => void
 }
 
 export default function Tables(props:TableProps) {
+
+    const displayActions = props.clientSelected || props.clientDelete
 
     function renderHeader(){
         return (
@@ -12,6 +17,7 @@ export default function Tables(props:TableProps) {
                 <th className="text-left p-4">Code</th>
                 <th className="text-left p-4">Name</th>
                 <th className="text-left p-4">Age</th>
+                {displayActions ? (<th className="p-4">Actions</th>) : false}
             </tr> 
         )
     }
@@ -24,9 +30,35 @@ export default function Tables(props:TableProps) {
                     <td className="text-left p-4">{client.id}</td>
                     <td className="text-left p-4">{client.name}</td>
                     <td className="text-left p-4">{client.age}</td>
+                    {displayActions ? renderActions(client) : false}
                 </tr>
             )
         })
+    }
+
+    function renderActions(client: Client) {
+        return (
+            <td className="flex justify-center ">
+                {props.clientSelected ? (
+                    <button onClick={() => props.clientSelected?.(client)} className={`
+                        flex items-center 
+                        text-green-600 rounded-full p-2
+                        hover:bg-purple-50
+                    `}>
+                        {EditIcon}
+                    </button>                    
+                ) : false}
+                {props.clientDelete ? (
+                    <button onClick={() => props.clientDelete?.(client)} className={`
+                        flex items-center 
+                        text-red-500 rounded-full p-2
+                        hover:bg-purple-50
+                    `}>
+                        {DeleteIcon}
+                    </button>
+                ) : false}
+            </td>
+        )
     }
 
     return (
