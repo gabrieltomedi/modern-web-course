@@ -1,6 +1,6 @@
 export default function Title(props:any) {
     return (
-        <div className="flex flex-col justify-center text-2xl">
+        <div className="flex flex-col justify-center text-2xl font-bold">
             <h1 className="px-5 py-2">
                 {props.children}
             </h1>
