@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Layout from "@/components/Layout";
 import Tables from "@/components/Tables";
 import Client from "@/core/Client";
+import Buttons from "@/components/Buttons";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +31,11 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        <Tables clients={clients} clientSelected={clientSelected} clientDelete={clientDeleted}></Tables>
+        <div className="flex justify-end">
+          <Buttons color="green" className="mb-4">New Client</Buttons>
+        </div>
+        <Tables clients={clients} clientSelected={clientSelected} 
+          clientDelete={clientDeleted}></Tables>
       </Layout>
     </div>
   );
