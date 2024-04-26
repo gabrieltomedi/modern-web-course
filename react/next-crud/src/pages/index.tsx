@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import Tables from "@/components/Tables";
 import Client from "@/core/Client";
 import Buttons from "@/components/Buttons";
+import Forms from "@/components/Forms";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function Home() {
         </div>
         <Tables clients={clients} clientSelected={clientSelected} 
           clientDelete={clientDeleted}></Tables>
+        <Forms client={clients[3]} />
       </Layout>
     </div>
   );
