@@ -5,6 +5,7 @@ import Tables from "@/components/Tables";
 import Client from "@/core/Client";
 import Buttons from "@/components/Buttons";
 import Forms from "@/components/Forms";
+import React, { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,12 @@ export default function Home() {
     console.log(`Delete ${client.name}`)
   }
 
+  function clientSave(client: Client) {
+    console.log(client)
+  }
+
+  const [visible, setVisible] = useState<'table' | 'form'>('table')
+
   return (
     <div className={`
       flex justify-center items-center h-screen
@@ -32,12 +39,25 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        <div className="flex justify-end">
-          <Buttons color="green" className="mb-4">New Client</Buttons>
-        </div>
-        <Tables clients={clients} clientSelected={clientSelected} 
-          clientDelete={clientDeleted}></Tables>
-        <Forms client={clients[3]} />
+        {visible === 'table' ? (
+          <React.Fragment>
+          <div className="flex justify-end">
+            <Buttons color="green" className="mb-4" 
+              onClick={() => setVisible('form')}>
+              New Client
+            </Buttons>
+          </div>
+          <Tables clients={clients}             
+            clientSelected={clientSelected} 
+            clientDelete={clientDeleted} />              
+        </React.Fragment>
+        ) : (
+          <Forms 
+            client={clients[3]} 
+            clientChange={clientSave}
+            cancel={() => setVisible('table')}
+          />
+        )}        
       </Layout>
     </div>
   );
