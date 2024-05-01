@@ -10,6 +10,11 @@ import React, { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
+  const [client, setClient] = useState(Client.empity())
+
+  const [visible, setVisible] = useState<'table' | 'form'>('table')
+
   const clients = [
     new Client('Ana', 34, '1'),
     new Client('Bia', 22, '2'),
@@ -19,7 +24,8 @@ export default function Home() {
   ]
   
   function clientSelected(client: Client) {
-    console.log(client.name)
+    setClient(client)
+    setVisible('form')
   }
 
   function clientDeleted(client: Client) {
@@ -28,9 +34,13 @@ export default function Home() {
 
   function clientSave(client: Client) {
     console.log(client)
+    setVisible('table')
   }
 
-  const [visible, setVisible] = useState<'table' | 'form'>('table')
+  function newClient() {
+    setClient(Client.empity())
+    setVisible('form')
+  } 
 
   return (
     <div className={`
@@ -43,7 +53,7 @@ export default function Home() {
           <React.Fragment>
           <div className="flex justify-end">
             <Buttons color="green" className="mb-4" 
-              onClick={() => setVisible('form')}>
+              onClick={newClient}>
               New Client
             </Buttons>
           </div>
@@ -53,7 +63,7 @@ export default function Home() {
         </React.Fragment>
         ) : (
           <Forms 
-            client={clients[3]} 
+            client={client} 
             clientChange={clientSave}
             cancel={() => setVisible('table')}
           />
