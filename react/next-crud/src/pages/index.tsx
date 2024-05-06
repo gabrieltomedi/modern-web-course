@@ -1,52 +1,25 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import Layout from "@/components/Layout";
 import Tables from "@/components/Tables";
-import Client from "@/core/Client";
 import Buttons from "@/components/Buttons";
 import Forms from "@/components/Forms";
-import React, { useEffect, useState } from "react";
-import ClientRepository from "@/core/ClientRepository";
-import ClientCollection from "@/backend/db/ClientCollection";
+import React from "react";
+import useClients from "@/hooks/useClients";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
 
-  const repo: ClientRepository = new ClientCollection()
-
-  const [client, setClient] = useState<Client>(Client.empity())
-  const [clients, setClients] = useState<Client[]>([])
-  const [visible, setVisible] = useState<'table' | 'form'>('table')
-
-  useEffect(getAll, [])
-
-  function getAll() {
-    repo.getAll().then(clients => {
-      setClients(clients)
-      setVisible('table')
-    })
-  }
-  
-  function clientSelected(client: Client) {
-    setClient(client)
-    setVisible('form')
-  }
-
-  async function clientDeleted(client: Client) {
-    await repo.delete(client)
-    getAll()
-  }
-
-  async function clientSave(client: Client) {
-    await repo.save(client)
-    getAll()
-  }
-
-  function newClient() {
-    setClient(Client.empity())
-    setVisible('form')
-  } 
+  const { 
+    client, 
+    clients, 
+    tableVisible, 
+    selectClient, 
+    deleteClient, 
+    newClient, 
+    saveClient,
+    showTable 
+  } = useClients()
 
   return (
     <div className={`
@@ -55,7 +28,7 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        {visible === 'table' ? (
+        {tableVisible ? (
           <React.Fragment>
           <div className="flex justify-end">
             <Buttons color="green" className="mb-4" 
@@ -64,14 +37,14 @@ export default function Home() {
             </Buttons>
           </div>
           <Tables clients={clients}             
-            clientSelected={clientSelected} 
-            clientDelete={clientDeleted} />              
+            clientSelected={selectClient} 
+            clientDelete={deleteClient} />              
         </React.Fragment>
         ) : (
           <Forms 
             client={client} 
-            clientChange={clientSave}
-            cancel={() => setVisible('table')}
+            clientChange={saveClient}
+            cancel={showTable}
           />
         )}        
       </Layout>
