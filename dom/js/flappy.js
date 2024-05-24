@@ -55,7 +55,7 @@ function Barriers(height, width, opening, space, notifyReady) {
     ]
 
     const displacement = 3
-    this.animateMoviment = () => {
+    this.animate = () => {
         this.pairs.forEach(pair => {
             pair.setX(pair.getX() - displacement)
 
@@ -85,7 +85,7 @@ function Bird(gameHeight) {
     window.onkeydown = e => flying = true
     window.onkeyup = e => flying = false
 
-    this.animateBird = () => {
+    this.animate = () => {
         const newY = this.getY() + (flying ? 8 : -5)
         const maxHeight = gameHeight - this.element.clientHeight
 
@@ -101,13 +101,49 @@ function Bird(gameHeight) {
     this.setY(gameHeight / 2)
 }
 
-const barriers = new Barriers(700, 1200, 200, 400)
-const bird = new Bird(700)
-const gameArea = document.querySelector('[wm-flappy')
+function Progress() {
+    this.element = newElement('div', 'progresso')
+    this.updatePoints = points => {
+        this.element.innerHTML = points
+    }
+    this.updatePoints(0)
+}
 
-gameArea.appendChild(bird.element)
-barriers.pairs.forEach(pair => gameArea.appendChild(pair.element))
-setInterval(() => {    
-    barriers.animateMoviment()
-    bird.animateBird()
-}, 20)
+// const barriers = new Barriers(700, 1200, 200, 400)
+// const bird = new Bird(700)
+// const progress = new Progress()
+// const gameArea = document.querySelector('[wm-flappy]')
+
+// gameArea.appendChild(bird.element)
+// gameArea.appendChild(progress.element)
+// barriers.pairs.forEach(pair => gameArea.appendChild(pair.element))
+// setInterval(() => {    
+//     barriers.animate()
+//     bird.animate()
+// }, 20)
+
+function FlappyBird() {
+    let points = 0
+
+    const gameArea = document.querySelector('[wm-flappy]')
+    const height = gameArea.clientHeight
+    const width = gameArea.clientWidth
+
+    const progress = new Progress()
+    const barriers = new Barriers(height, width, 200, 400, 
+        () => progress.updatePoints(++points))
+    const bird = new Bird(height)
+
+    gameArea.appendChild(progress.element)
+    gameArea.appendChild(bird.element)
+    barriers.pairs.forEach(pair => gameArea.appendChild(pair.element))
+
+    this.start = () => {
+        const timer = setInterval(() => {
+            barriers.animate()
+            bird.animate()
+        }, 20)
+    }
+}
+
+new FlappyBird().start()
