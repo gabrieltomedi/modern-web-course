@@ -1,14 +1,1 @@
-/*!*******************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/assets/css/style.css ***!
-  \*******************************************************************************************************************/
-body {
-  background-color: #444;
-}
-/*!*********************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/assets/scss/index.scss ***!
-  \*********************************************************************************************************************/
-.button {
-  background-color: #19b3e6;
-  color: #F5F5F5;
-  font-size: 1.8em;
-}
+body{background-color:#444}.button{background-color:#19b3e6;color:#f5f5f5;font-size:1.8em}
