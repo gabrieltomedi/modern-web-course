@@ -13,6 +13,13 @@ module.exports = {
         filename: 'main.js',
         path: __dirname + '/public'
     },
+    devServer: {
+        static: {
+            directory: "./public"
+        },
+        compress: true,
+        port: 9000
+    },
     optimization: {
         minimizer: [            
             new TerserPlugin({
